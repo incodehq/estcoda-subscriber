@@ -1,0 +1,57 @@
+= Spring Boot Camel
+
+Based on: link:https://github.com/apache/camel/tree/camel-2.24.2/examples/camel-example-spring-boot-activemq[]
+
+
+== Prereqs
+
+From Apache ActiveMQ you can download the broker as a .zip or .tar.gz file.
+
+Unzip/tar the archive, and start a terminal.
+
+Change directory to the unzipped directory and start the broker.
+
+[source,bash]
+----
+bin/activemq start
+----
+
+Which runs the broker in the foreground and logs to the console, using the configuration in `conf`.
+
+Log on using: link:http://localhost:8161[]
+
+The user/password is defined in `conf/user.properties` (ie, `admin`/`admin`)
+
+
+To control the ActiveMQ broker, use `status`, `help`, `start` and `stop`, eg;
+
+[source,bash]
+----
+bin/activemq status
+----
+
+
+== How to run the example
+
+Camel is already configured to connect to a remote broker:
+
+[source,yaml]
+.application.yaml
+----
+spring:
+  activemq:
+    broker-url: tcp://localhost:61616
+----
+
+Run using:
+
+[source,bash]
+----
+mvn -pl webapp spring-boot:run
+----
+
+[NOTE]
+====
+If ApacheMQ broker is not running, then Camel will keep retrying.
+That's because the `camel.springboot.main-run-controller` is set to `true`.
+====

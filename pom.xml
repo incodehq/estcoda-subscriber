@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<parent>
+		<groupId>org.incode</groupId>
+		<artifactId>incode-parent</artifactId>
+		<!-- NB: also update incode-platform.version property below. -->
+		<version>1.17.0.20191003-1233-47ac5d22</version>
+	</parent>
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.incode.estcoda-subscriber</groupId>
+    <artifactId>estcoda-subscriber</artifactId>
+    <version>${revision}</version>
+
+    <name>Estatio/Coda Subscriber (Parent)</name>
+
+	<packaging>pom</packaging>
+
+	<description>Message Broker Subscriber for relaying interactions from Estatio to Coda</description>
+
+	<properties>
+
+		<revision>1.0.0-SNAPSHOT</revision>
+
+		<incode-platform.version>1.17.0.20191003-1233-47ac5d22</incode-platform.version>
+		<spring-boot.version>2.1.8.RELEASE</spring-boot.version>
+		<spring5-version>5.1.9.RELEASE</spring5-version>
+		<spring-version>${spring5-version}</spring-version>
+
+		<camel.version>2.24.2</camel.version>
+
+		<cxf.version>3.2.10</cxf.version>
+
+		<lombok.version>1.18.10</lombok.version>
+
+		<compileSource>8</compileSource>
+		<compileTarget>8</compileTarget>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+		<isis.version>1.17.0</isis.version>
+	</properties>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>com.github.odavid.maven.plugins</groupId>
+				<artifactId>mixin-maven-plugin</artifactId>
+				<version>0.1-alpha-39</version>
+				<extensions>true</extensions>
+				<configuration>
+					<mixins>
+						<mixin>
+							<groupId>com.danhaywood.mavenmixin</groupId>
+							<artifactId>enforcerrelaxed</artifactId>
+						</mixin>
+						<mixin>
+							<groupId>com.danhaywood.mavenmixin</groupId>
+							<artifactId>standard</artifactId>
+						</mixin>
+					</mixins>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>flatten-maven-plugin</artifactId>
+				<version>1.0.0</version>
+				<executions>
+					<execution>
+						<id>flatten</id>
+						<phase>process-resources</phase>
+						<goals>
+							<goal>flatten</goal>
+						</goals>
+						<configuration>
+							<updatePomFile>true</updatePomFile>
+							<pomElements>
+								<parent>resolve</parent>
+								<name>resolve</name>
+								<description>resolve</description>
+								<url>resolve</url>
+								<scm>resolve</scm>
+								<developers>resolve</developers>
+								<properties>resolve</properties>
+								<dependencyManagement>resolve</dependencyManagement>
+								<dependencies>resolve</dependencies>
+								<profiles>resolve</profiles>
+							</pomElements>
+						</configuration>
+					</execution>
+					<execution>
+						<id>flatten.clean</id>
+						<phase>clean</phase>
+						<goals>
+							<goal>clean</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+		</plugins>
+	</build>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.incode.estcoda-subscriber</groupId>
+				<artifactId>estcoda-subscriber-spi</artifactId>
+				<version>${revision}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.incode.estcoda-subscriber</groupId>
+				<artifactId>estcoda-subscriber-spi-log</artifactId>
+				<version>${revision}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.incode.estcoda-subscriber</groupId>
+				<artifactId>estcoda-subscriber-spi-rest</artifactId>
+				<version>${revision}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.incode</groupId>
+				<artifactId>estcoda-subscriber-webapp</artifactId>
+				<version>${revision}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.isis.core</groupId>
+				<artifactId>isis-core-schema</artifactId>
+				<version>${isis.version}</version>
+			</dependency>
+
+
+			<!-- Spring Boot BOM -->
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-dependencies</artifactId>
+				<version>${spring-boot.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-context</artifactId>
+				<version>${spring-version}</version>
+				<scope>compile</scope>
+			</dependency>
+
+			<!-- Camel BOM -->
+			<dependency>
+				<groupId>org.apache.camel</groupId>
+				<artifactId>camel-spring-boot-dependencies</artifactId>
+				<version>${camel.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.projectlombok</groupId>
+				<artifactId>lombok</artifactId>
+				<version>${lombok.version}</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>com.google.guava</groupId>
+				<artifactId>guava</artifactId>
+				<version>28.1-jre</version>
+			</dependency>
+		</dependencies>
+
+    </dependencyManagement>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
+
+	<modules>
+		<module>spi</module>
+		<module>spi-log</module>
+		<module>spi-rest</module>
+		<module>webapp</module>
+	</modules>
+
+	<profiles>
+		<profile>
+			<id>repo-incode-work</id>
+			<activation>
+				<property>
+					<name>!skip.repo-incode-work</name>
+				</property>
+			</activation>
+			<repositories>
+				<repository>
+					<id>repo-incode-work</id>
+					<url>https://repo.incode.work</url>
+					<name>repo.incode.work</name>
+					<releases>
+						<enabled>true</enabled>
+						<updatePolicy>always</updatePolicy>
+						<checksumPolicy>fail</checksumPolicy>
+					</releases>
+					<snapshots>
+						<enabled>false</enabled>
+						<updatePolicy>always</updatePolicy>
+						<checksumPolicy>fail</checksumPolicy>
+					</snapshots>
+					<layout>default</layout>
+				</repository>
+			</repositories>
+		</profile>
+
+		<profile>
+			<id>docker-deploy</id>
+			<activation>
+				<property>
+					<name>docker-deploy</name>
+				</property>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<!-- disable deploy for *this* parent pom, but not for child module -->
+						<artifactId>maven-deploy-plugin</artifactId>
+						<configuration>
+							<skip>true</skip>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+			<modules>
+				<module>webapp</module>
+			</modules>
+		</profile>
+
+
+	</profiles>
+</project>
