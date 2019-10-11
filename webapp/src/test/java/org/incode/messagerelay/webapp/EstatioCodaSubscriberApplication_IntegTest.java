@@ -14,13 +14,18 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = EstatioCodaSubscriberApplication.class)
-public class SpringContextIntegrationTest {
+public class EstatioCodaSubscriberApplication_IntegTest {
 
     @Autowired
     RelayLog relayLog;
 
     @Test
     public void whenSpringContextIsBootstrapped_thenNoExceptions() {
+        InteractionDto interactionDto = newInteractionDto();
+        relayLog.handle(interactionDto);
+    }
+
+    private static InteractionDto newInteractionDto() {
         InteractionDto interactionDto = new InteractionDto();
         interactionDto.setTransactionId(UUID.randomUUID().toString());
         interactionDto.setMajorVersion("1");
@@ -29,6 +34,6 @@ public class SpringContextIntegrationTest {
         actionInvocationDto.setSequence(1);
         actionInvocationDto.setLogicalMemberIdentifier("customer.Customer#placeOrder()");
         interactionDto.setExecution(actionInvocationDto);
-        relayLog.handle(interactionDto);
+        return interactionDto;
     }
 }

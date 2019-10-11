@@ -31,10 +31,16 @@ public class RelayRest implements Relay {
     String base;
 
     @Setter
+    Integer portOverride;
+
+    @Setter
     String username;
 
     @Setter
     String password;
+
+    @Setter
+    String uriPrefix;
 
     @Setter
     String uriSuffix;

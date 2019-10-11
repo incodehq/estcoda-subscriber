@@ -16,6 +16,7 @@ public class RelayRestConfig {
      * The base URL of the webapp that hosts the CODA REST APIs.
      */
     private String base = "http://localhost:9090/est2coda/";
+
     /**
      * The user name to invoke the {@link #getBase() REST API}
      */
