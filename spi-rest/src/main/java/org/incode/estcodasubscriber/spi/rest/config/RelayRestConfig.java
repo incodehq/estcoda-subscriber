@@ -12,40 +12,34 @@ import org.springframework.boot.convert.DurationUnit;
 @Data
 public class RelayRestConfig {
 
-    private final RestClient restClient = new RestClient();
+    /**
+     * The base URL of the webapp that hosts the CODA REST APIs.
+     */
+    private String base = "http://localhost:9090/est2coda/";
+    /**
+     * The user name to invoke the {@link #getBase() REST API}
+     */
+    private String username = "alex";
+    /**
+     * The corresponding password for the {@link #getUsername() user}.
+     */
+    private String password = "pass";
 
-    @Data
-    public static class RestClient {
+    /**
+     * The suffix to append to the {@link #getBase()}
+     */
+    private String uriSuffix = "memberInteractionsQueue";
 
-        /**
-         * The base URL of the webapp that hosts the CODA REST APIs.
-         */
-        private String base = "http://localhost:9090/est2coda/";
-        /**
-         * The user name to invoke the {@link #getBase() REST API}
-         */
-        private String username = "alex";
-        /**
-         * The corresponding password for the {@link #getUsername() user}.
-         */
-        private String password = "pass";
+    /**
+     * How long before giving up attempting to initially connect
+     */
+    @DurationUnit(ChronoUnit.SECONDS)
+    private Duration connectionTimeout = Duration.ofSeconds(30);
 
-        /**
-         * The suffix to append to the {@link #getBase()}
-         */
-        private String uriSuffix = "memberInteractionsQueue";
-
-        /**
-         * How long before giving up attempting to initially connect
-         */
-        @DurationUnit(ChronoUnit.SECONDS)
-        private Duration connectionTimeout = Duration.ofSeconds(30);
-
-        /**
-         * How long before giving up when waiting for a response
-         */
-        @DurationUnit(ChronoUnit.SECONDS)
-        private Duration receiveTimeout = Duration.ofSeconds(60);
-    }
+    /**
+     * How long before giving up when waiting for a response
+     */
+    @DurationUnit(ChronoUnit.SECONDS)
+    private Duration receiveTimeout = Duration.ofSeconds(60);
 
 }

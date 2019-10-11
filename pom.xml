@@ -159,11 +159,11 @@
 				<scope>import</scope>
 			</dependency>
 
+			<!-- Other -->
 			<dependency>
-				<groupId>org.projectlombok</groupId>
-				<artifactId>lombok</artifactId>
-				<version>${lombok.version}</version>
-				<scope>provided</scope>
+				<groupId>org.apache.cxf</groupId>
+				<artifactId>cxf-rt-transports-http-hc</artifactId>
+				<version>${cxf.version}</version>
 			</dependency>
 
 			<dependency>
@@ -171,6 +171,15 @@
 				<artifactId>guava</artifactId>
 				<version>28.1-jre</version>
 			</dependency>
+
+			<dependency>
+				<groupId>org.projectlombok</groupId>
+				<artifactId>lombok</artifactId>
+				<version>${lombok.version}</version>
+				<scope>provided</scope>
+			</dependency>
+
+
 		</dependencies>
 
     </dependencyManagement>

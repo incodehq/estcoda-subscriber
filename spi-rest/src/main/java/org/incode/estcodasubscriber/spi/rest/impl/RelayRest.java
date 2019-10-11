@@ -15,6 +15,7 @@ import org.apache.isis.schema.ixn.v1.InteractionDto;
 import org.incode.estcodasubscriber.spi.Relay;
 import org.incode.estcodasubscriber.spi.RelayStatus;
 import org.incode.estcodasubscriber.spi.JaxbService;
+import org.incode.estcodasubscriber.spi.rest.config.RelayRestConfig;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -23,42 +24,39 @@ import com.google.common.collect.ImmutableMap;
 @Component
 public class RelayRest implements Relay {
 
-    final JaxbService jaxbService;
-    final ClientBuilder clientBuilder;
+    private final JaxbService jaxbService;
+    final ClientBuilder clientBuilder = ClientBuilder.newBuilder();
 
-    @Value("app.relay-rest.base")
     @Setter
     String base;
 
-    @Value("app.relay-rest.username")
     @Setter
     String username;
 
-    @Value("app.relay-rest.password")
     @Setter
     String password;
 
-    @Value("app.relay-rest.uri-suffix")
     @Setter
     String uriSuffix;
 
-    @Value("app.relay-rest.connection-timeout")
     @Setter
     Duration connectionTimeout;
 
-    @Value("app.relay-rest.duration-timeout")
     @Setter
     Duration receiveTimeout;
 
     URI uri;
 
-    public RelayRest(JaxbService jaxbService) {
-        this(jaxbService, ClientBuilder.newBuilder());
-    }
+    public RelayRest(JaxbService jaxbService, RelayRestConfig config) {
 
-    RelayRest(JaxbService jaxbService, ClientBuilder clientBuilder) {
         this.jaxbService = jaxbService;
-        this.clientBuilder = clientBuilder;
+
+        this.base = config.getBase();
+        this.username = config.getUsername();
+        this.password = config.getPassword();
+        this.uriSuffix = config.getUriSuffix();
+        this.connectionTimeout = config.getConnectionTimeout();
+        this.receiveTimeout = config.getReceiveTimeout();
     }
 
     @PostConstruct

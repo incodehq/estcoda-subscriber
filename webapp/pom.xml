@@ -64,18 +64,12 @@
 		<dependency>
 			<groupId>org.apache.cxf</groupId>
 			<artifactId>cxf-rt-rs-client</artifactId>
-			<version>${cxf.version}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.apache.cxf</groupId>
-			<artifactId>cxf-rt-transports-http-hc</artifactId>
-			<version>${cxf.version}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.apache.cxf</groupId>
-			<artifactId>cxf-rt-frontend-jaxrs</artifactId>
+			<!--
+			seems to be necessary to specify this dependency directly,
+			(even though is transitive dependency of spi-rest).
+			Not doing results in resolving to incorrect version, then
+			unable to find the jax-rs provider)
+			-->
 			<version>${cxf.version}</version>
 		</dependency>
 
