@@ -85,6 +85,18 @@
 		</dependency>
 
 		<dependency>
+			<groupId>org.incode.estcoda-subscriber</groupId>
+			<artifactId>estcoda-subscriber-spi-log</artifactId>
+		</dependency>
+
+<!--
+		<dependency>
+			<groupId>org.incode.estcoda-subscriber</groupId>
+			<artifactId>estcoda-subscriber-spi-rest</artifactId>
+		</dependency>
+-->
+
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-configuration-processor</artifactId>
 			<optional>true</optional>
@@ -119,16 +131,6 @@
 			<version>${spring-version}</version>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
-			<groupId>org.incode.estcoda-subscriber</groupId>
-			<artifactId>estcoda-subscriber-spi-log</artifactId>
-		</dependency>
-<!--
-		<dependency>
-			<groupId>org.incode.estcoda-subscriber</groupId>
-			<artifactId>estcoda-subscriber-spi-rest</artifactId>
-		</dependency>
--->
 	</dependencies>
 
     <build>

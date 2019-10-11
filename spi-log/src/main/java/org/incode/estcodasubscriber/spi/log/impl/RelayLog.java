@@ -1,4 +1,4 @@
-package org.incode.estcodasubscriber.spi.rest.impl;
+package org.incode.estcodasubscriber.spi.log.impl;
 
 import org.apache.isis.schema.ixn.v1.InteractionDto;
 import org.incode.estcodasubscriber.spi.JaxbService;

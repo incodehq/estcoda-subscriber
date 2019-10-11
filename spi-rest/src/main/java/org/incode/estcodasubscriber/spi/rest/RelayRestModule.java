@@ -12,6 +12,7 @@ import org.springframework.context.annotation.Import;
 @Configuration
 @Import({
         RelayRest.class,
+        RelayRestConfig.class,
         RelayModule.class
 })
 @EnableConfigurationProperties(RelayRestConfig.class)

@@ -17,6 +17,7 @@ import com.google.common.io.Resources;
 
 @Component
 public class JaxbService {
+
     private static Map<Class<?>, JAXBContext> jaxbContextByClass = (new MapMaker()).concurrencyLevel(10).makeMap();
 
     public <T> T fromXml(Reader reader, Class<T> dtoClass) {
