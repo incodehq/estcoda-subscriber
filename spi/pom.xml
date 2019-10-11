@@ -3,15 +3,15 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>org.incode.estcoda-subscriber</groupId>
-        <artifactId>estcoda-subscriber</artifactId>
+        <groupId>org.incode.ixn-subscriber</groupId>
+        <artifactId>ixn-subscriber</artifactId>
         <version>${revision}</version>
     </parent>
-    <artifactId>estcoda-subscriber-spi</artifactId>
+    <artifactId>ixn-subscriber-spi</artifactId>
 
     <packaging>jar</packaging>
 
-    <name>Estatio/Coda Subscriber SPI Definition</name>
+    <name>Apache Isis Interaction Subscriber SPI Definition</name>
     <description>
         Defines an SPI to propagate the retrieved message to Coda.
     </description>

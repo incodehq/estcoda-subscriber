@@ -6,23 +6,23 @@
     </properties>
 
     <parent>
-        <groupId>org.incode.estcoda-subscriber</groupId>
-        <artifactId>estcoda-subscriber</artifactId>
+        <groupId>org.incode.ixn-subscriber</groupId>
+        <artifactId>ixn-subscriber</artifactId>
         <version>${revision}</version>
     </parent>
-    <artifactId>estcoda-subscriber-spi-rest</artifactId>
+    <artifactId>ixn-subscriber-spi-rest</artifactId>
 
     <packaging>jar</packaging>
 
-    <name>Estatio/Coda Subscriber SPI REST Implementation</name>
+    <name>Apache Isis Interaction Subscriber SPI REST Implementation</name>
     <description>
         Implementation of SPI that publishes to Coda using REST.
     </description>
 
     <dependencies>
         <dependency>
-            <groupId>org.incode.estcoda-subscriber</groupId>
-            <artifactId>estcoda-subscriber-spi</artifactId>
+            <groupId>org.incode.ixn-subscriber</groupId>
+            <artifactId>ixn-subscriber-spi</artifactId>
         </dependency>
 
         <dependency>

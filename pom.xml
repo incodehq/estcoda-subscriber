@@ -11,11 +11,11 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.incode.estcoda-subscriber</groupId>
-    <artifactId>estcoda-subscriber</artifactId>
+    <groupId>org.incode.ixn-subscriber</groupId>
+    <artifactId>ixn-subscriber</artifactId>
     <version>${revision}</version>
 
-    <name>Estatio/Coda Subscriber (Parent)</name>
+    <name>Apache Isis Interaction Subscriber (Parent)</name>
 
 	<packaging>pom</packaging>
 
@@ -107,23 +107,23 @@
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
-				<groupId>org.incode.estcoda-subscriber</groupId>
-				<artifactId>estcoda-subscriber-spi</artifactId>
+				<groupId>org.incode.ixn-subscriber</groupId>
+				<artifactId>ixn-subscriber-spi</artifactId>
 				<version>${revision}</version>
 			</dependency>
 			<dependency>
-				<groupId>org.incode.estcoda-subscriber</groupId>
-				<artifactId>estcoda-subscriber-spi-log</artifactId>
+				<groupId>org.incode.ixn-subscriber</groupId>
+				<artifactId>ixn-subscriber-spi-log</artifactId>
 				<version>${revision}</version>
 			</dependency>
 			<dependency>
-				<groupId>org.incode.estcoda-subscriber</groupId>
-				<artifactId>estcoda-subscriber-spi-rest</artifactId>
+				<groupId>org.incode.ixn-subscriber</groupId>
+				<artifactId>ixn-subscriber-spi-rest</artifactId>
 				<version>${revision}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.incode</groupId>
-				<artifactId>estcoda-subscriber-webapp</artifactId>
+				<artifactId>ixn-subscriber-webapp</artifactId>
 				<version>${revision}</version>
 			</dependency>
 

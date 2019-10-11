@@ -3,23 +3,23 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>org.incode.estcoda-subscriber</groupId>
-        <artifactId>estcoda-subscriber</artifactId>
+        <groupId>org.incode.ixn-subscriber</groupId>
+        <artifactId>ixn-subscriber</artifactId>
         <version>${revision}</version>
     </parent>
-    <artifactId>estcoda-subscriber-spi-log</artifactId>
+    <artifactId>ixn-subscriber-spi-log</artifactId>
 
     <packaging>jar</packaging>
 
-    <name>Estatio/Coda Subscriber SPI Log Implementation</name>
+    <name>Apache Isis Interaction Subscriber SPI Log Implementation</name>
     <description>
         Implementation of SPI that just logs the interaction.
     </description>
 
     <dependencies>
         <dependency>
-            <groupId>org.incode.estcoda-subscriber</groupId>
-            <artifactId>estcoda-subscriber-spi</artifactId>
+            <groupId>org.incode.ixn-subscriber</groupId>
+            <artifactId>ixn-subscriber-spi</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
