@@ -27,30 +27,39 @@ The diagram below sketches the design:
 ----
 hide empty members
 
-package relay {
-    interface RelayRest {
-        handle()
-    }
+component ActiveMQ {
 }
 
-package relay-rest {
+component "ixn-subscriber" {
 
-    class RelayRest implements Relay {
+    package relay {
+        interface RelayRest {
+            handle()
+        }
     }
-}
 
-package webapp {
+    package relay-rest {
 
-    class SubscribingRoute {
-
+        class RelayRest implements Relay {
+        }
     }
-    class Dispatcher {
 
+    package webapp {
+
+        class SubscribingRoute {
+
+        }
+        class Dispatcher {
+
+        }
     }
+
 }
 
 component RestEndpoint {
 }
+
+ActiveMQ .r-> SubscribingRoute
 
 SubscribingRoute .d-> Dispatcher
 Dispatcher -> "0..*" Relay
