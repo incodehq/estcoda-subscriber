@@ -11,7 +11,7 @@
 
     <packaging>jar</packaging>
 
-    <name>Estatio/Coda REST SPI Implementation</name>
+    <name>Estatio/Coda Subscriber SPI Log Implementation</name>
     <description>
         Implementation of SPI that just logs the interaction.
     </description>

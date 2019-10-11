@@ -11,7 +11,7 @@
 
     <packaging>jar</packaging>
 
-    <name>Estatio/Coda REST SPI Implementation</name>
+    <name>Estatio/Coda Subscriber SPI REST Implementation</name>
     <description>
         Implementation of SPI that publishes to Coda using REST.
     </description>
