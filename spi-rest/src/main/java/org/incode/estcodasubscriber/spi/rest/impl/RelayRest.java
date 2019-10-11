@@ -51,6 +51,10 @@ public class RelayRest implements Relay {
     @Setter
     Duration receiveTimeout;
 
+    @Setter
+    boolean logOnly;
+
+
     URI uri;
 
     public RelayRest(JaxbService jaxbService, RelayRestConfig config) {
@@ -63,6 +67,7 @@ public class RelayRest implements Relay {
         this.uriSuffix = config.getUriSuffix();
         this.connectionTimeout = config.getConnectionTimeout();
         this.receiveTimeout = config.getReceiveTimeout();
+        this.logOnly = config.isLogOnly();
     }
 
     @PostConstruct
@@ -74,6 +79,11 @@ public class RelayRest implements Relay {
     @Override
     public RelayStatus handle(InteractionDto interactionDto) {
         final String xml = jaxbService.toXml(interactionDto);
+        if(logOnly) {
+            System.out.printf(xml);
+            return RelayStatus.OK;
+        }
+
         final JaxRsResponse jaxRsResponse = postXml(uri, xml);
         return jaxRsResponse.toRelayStatus();
     }

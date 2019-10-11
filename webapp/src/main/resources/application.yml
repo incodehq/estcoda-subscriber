@@ -11,9 +11,8 @@ spring:
 
 app:
   queue-name:
-    memberInteractionsQueue;
+    memberInteractionsQueue
   relay-rest:
-    rest-client:
-      connection-timeout: 60s
-      receive-timeout: 60s
+    connection-timeout: 60s
+    receive-timeout: 60s
 

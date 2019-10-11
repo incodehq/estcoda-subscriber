@@ -43,4 +43,8 @@ public class RelayRestConfig {
     @DurationUnit(ChronoUnit.SECONDS)
     private Duration receiveTimeout = Duration.ofSeconds(60);
 
+    /**
+     * For testing
+     */
+    private boolean logOnly = false;
 }

@@ -16,15 +16,12 @@ import org.springframework.stereotype.Component;
 @Component
 public class Dispatcher {
 
-    private final AppConfig appConfig;
     private final List<Relay> relays;
     private final JaxbService jaxbService;
 
     public Dispatcher(
-            final AppConfig appConfig,
             final List<Relay> relays,
             final JaxbService jaxbService) {
-        this.appConfig = appConfig;
         this.relays = relays;
         this.jaxbService = jaxbService;
     }
@@ -49,7 +46,7 @@ public class Dispatcher {
                         .map(relay -> relay.handle(interactionDto))
                         .filter(x -> x == RelayStatus.FAILED)
                         .findAny();
-        if (!anyFailed.isPresent()) {
+        if (anyFailed.isPresent()) {
             throw new RuntimeException("Failed to dispatch");
         }
     }
