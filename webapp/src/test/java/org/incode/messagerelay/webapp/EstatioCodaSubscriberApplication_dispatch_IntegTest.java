@@ -16,6 +16,7 @@ import org.incode.estcodasubscriber.spi.RelayStatus;
 import org.incode.estcodasubscriber.webapp.WebappModule;
 import org.incode.estcodasubscriber.webapp.config.AppConfig;
 import org.incode.estcodasubscriber.webapp.dispatch.SubscribingRoute;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,10 +73,29 @@ public class EstatioCodaSubscriberApplication_dispatch_IntegTest {
         jmsTemplate.convertAndSend("memberInteractionsQueue", xml);
 
         // then
-        final InteractionDto returned = relay.receivedAfterMillis(1000);
+        final InteractionDto returned = relay.awaitMillis(1000);
         final String returnedXml = jaxbService.toXml(returned);
 
         assertThat(returnedXml).isEqualTo(xml);
+    }
+
+    @Ignore // this works, but it's not clear to me where we should handle an exception, or how this will work exactly in "real-life"
+    @Test
+    public void sad_case() throws InterruptedException {
+
+        // given
+        InteractionDto interactionDto = newInteractionDto();
+        String xml = jaxbService.toXml(interactionDto);
+
+        // expect
+        relay.toReturn(RelayStatus.FAILED);
+
+        // when
+        jmsTemplate.convertAndSend("memberInteractionsQueue", xml);
+
+        // then
+        relay.awaitMillis(1000);
+
     }
 
     private static InteractionDto newInteractionDto() {
@@ -91,40 +111,6 @@ public class EstatioCodaSubscriberApplication_dispatch_IntegTest {
     }
 }
 
-@Configuration
-class SenderConfig {
-
-    @Value("${activemq.broker-url}")
-    private String brokerUrl;
-
-    @Bean
-    public ActiveMQConnectionFactory senderActiveMQConnectionFactory() {
-        ActiveMQConnectionFactory activeMQConnectionFactory =
-                new ActiveMQConnectionFactory();
-        activeMQConnectionFactory.setBrokerURL(brokerUrl);
-
-        return activeMQConnectionFactory;
-    }
-
-    @Bean
-    public CachingConnectionFactory cachingConnectionFactory() {
-        return new CachingConnectionFactory(
-                senderActiveMQConnectionFactory());
-    }
-
-    @Bean
-    public JmsTemplate jmsTemplate() {
-        return new JmsTemplate(cachingConnectionFactory());
-    }
-
-    @Bean
-    public Relay stubRelay() {
-        return new AcknowledgingRelay();
-    }
-
-}
-
-@TestComponent
 class AcknowledgingRelay implements Relay {
 
     private CountDownLatch latch;
@@ -139,7 +125,7 @@ class AcknowledgingRelay implements Relay {
         this.handleReturn = handleReturn;
     }
 
-    InteractionDto receivedAfterMillis(int timeout) throws InterruptedException {
+    InteractionDto awaitMillis(int timeout) throws InterruptedException {
         latch.await(timeout, TimeUnit.MILLISECONDS);
         return handleArg;
     }

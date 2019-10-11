@@ -1,6 +1,11 @@
 package org.incode.estcodasubscriber.webapp.dispatch;
 
+import org.apache.camel.Exchange;
+import org.apache.camel.Processor;
+import org.apache.camel.builder.DefaultErrorHandlerBuilder;
+import org.apache.camel.builder.ErrorHandlerBuilder;
 import org.apache.camel.builder.RouteBuilder;
+import org.apache.camel.processor.ErrorHandler;
 import org.incode.estcodasubscriber.webapp.config.AppConfig;
 import org.springframework.stereotype.Component;
 
