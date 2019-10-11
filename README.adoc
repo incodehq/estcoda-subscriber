@@ -1,57 +1,145 @@
-= Spring Boot Camel
+= Interaction Subscriber
+:toc:
 
-Based on: link:https://github.com/apache/camel/tree/camel-2.24.2/examples/camel-example-spring-boot-activemq[]
+This microservice is responsible for subscribing to an ActiveMQ message broker and forwarding on any link:https://isis.apache.org/schema/ixn/ixn.xsd[interaction] messages (originally originating from an link:https://isis.apache.org[Apache Isis]) application onto a REST endpoint.
+
+It can be used in conjunction with the link:https://github.com/incodehq/ixn-relay[incodehq/ixn-relay] to publish messages from an Apache Isis application to an integration webapp (eg implemented using https://camel.apache.org[Apache Camel]), but without either the Apache Isis app nor the integration app having knowledge of the other.
+
+[plantuml]
+----
+[ixn-relay] as ir
+[Apache Isis\nApp] as app
+[Integration\nApp] as ia
+[ActiveMQ] as mb
+[ixn-subscriber] as is
+
+app <-d. ir
+is -.r-> ia
+mb .d-> is
+ir -.r-> mb
+----
+
+== Design
+
+The diagram below sketches the design:
+
+[plantuml]
+----
+hide empty members
+
+package relay {
+    interface RelayRest {
+        handle()
+    }
+}
+
+package relay-rest {
+
+    class RelayRest implements Relay {
+    }
+}
+
+package webapp {
+
+    class SubscribingRoute {
+
+    }
+    class Dispatcher {
+
+    }
+}
+
+component RestEndpoint {
+}
+
+SubscribingRoute .d-> Dispatcher
+Dispatcher -> "0..*" Relay
+
+RelayRest .r-> RestEndpoint : http POST
+----
+
+The `SubscribingRoute` is responsible for subscribing to an ActiveMQ (JMS) queue.
+It simply forwards onto the `Dispatcher`.
+
+The `Dispatcher` in turn loops over all available `Relay` implementations
+
+Finally, the `RelayRest` implementation posts the interaction to the specified REST endpoint.
 
 
-== Prereqs
+== Configuration
 
-From Apache ActiveMQ you can download the broker as a .zip or .tar.gz file.
+This microservice has been implemented using Spring Boot, and so is configured using an `application.yaml` file:
 
-Unzip/tar the archive, and start a terminal.
+[source.yaml]
+----
+logging:
+  config: classpath:logback.xml
 
-Change directory to the unzipped directory and start the broker.
+camel:
+  springboot:
+    main-run-controller: true
 
+spring:
+  activemq:
+    broker-url: tcp://localhost:61616
+
+app:
+  queue-name: memberInteractionsQueue
+  relay-rest:
+    base: http://localhost:9090/estcoda/
+    username: alex
+    password: pass
+    uri-suffix: memberInteractionsQueue
+    connection-timeout: 60s
+    receive-timeout: 60s
+----
+
+== Local Testing
+
+=== Prereqs
+
+This image requires an instance of Apache ActiveMQ to be running:
+
+* link:https://activemq.apache.org/components/classic/download/[download] the broker as a .zip or .tar.gz file.
+* Unzip/tar the archive, and start a terminal.
+* change directory to the unzipped directory and start the broker.
++
 [source,bash]
 ----
 bin/activemq start
 ----
++
+This runs the broker using the configuration in the `conf` directory.
+The user/password is defined in `conf/user.properties` (ie, `admin`/`admin`).
 
-Which runs the broker in the foreground and logs to the console, using the configuration in `conf`.
+* Log on using: link:http://localhost:8161[]
 
-Log on using: link:http://localhost:8161[]
-
-The user/password is defined in `conf/user.properties` (ie, `admin`/`admin`)
-
-
-To control the ActiveMQ broker, use `status`, `help`, `start` and `stop`, eg;
-
+* To control the ActiveMQ broker, use `status`, `help`, `start` and `stop`, eg;
++
 [source,bash]
 ----
 bin/activemq status
 ----
 
+=== How to run the example
 
-== How to run the example
+The configuration file above shows Camel configured to connect to a remote broker (`tcp://localhost:61616`).
 
-Camel is already configured to connect to a remote broker:
-
-[source,yaml]
-.application.yaml
-----
-spring:
-  activemq:
-    broker-url: tcp://localhost:61616
-----
-
-Run using:
+To run, just use maven:
 
 [source,bash]
 ----
 mvn -pl webapp spring-boot:run
 ----
 
-[NOTE]
-====
-If ApacheMQ broker is not running, then Camel will keep retrying.
-That's because the `camel.springboot.main-run-controller` is set to `true`.
-====
+
+
+== Docker
+
+A Docker image of this app is available at https://hub.docker.com/r/incodehq/ixn-subscriber[Docker hub].
+
+To allow configuration to be easily externalized, the image expects a `/run/secrets` directory to exist, and switches to and then runs the application in that directory.
+Spring Boot will then link:https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-external-config.html#boot-features-external-config-application-property-files[automatically pick up] that configuration and use it.
+
+Typically therefore all that is required is to define an `application.yaml` or `application.properties` file as a secret.
+

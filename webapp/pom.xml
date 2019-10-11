@@ -10,7 +10,7 @@
 	</parent>
 
     <artifactId>ixn-subscriber-webapp</artifactId>
-    <name>Apache Isis Interaction Subscriber Webapp</name>
+    <name>Interaction Subscriber Webapp</name>
 	<description>Webapp component of a subscriber for messages originating from an Apache Isis application via a Message Broker</description>
 
 	<properties>

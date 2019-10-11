@@ -11,7 +11,7 @@
 
     <packaging>jar</packaging>
 
-    <name>Apache Isis Interaction Subscriber SPI Definition</name>
+    <name>Interaction Subscriber SPI Definition</name>
     <description>
         Defines an SPI to propagate the retrieved message to Coda.
     </description>
