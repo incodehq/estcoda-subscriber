@@ -123,11 +123,11 @@
 			<version>${spring-version}</version>
 			<scope>test</scope>
 		</dependency>
+
 		<!-- activemq -->
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-activemq</artifactId>
-			<!-- in a test context we INCLUDE the activemq-broker because we want to send a message through it -->
+			<groupId>org.apache.activemq</groupId>
+			<artifactId>activemq-broker</artifactId>
 			<scope>test</scope>
 		</dependency>
 
