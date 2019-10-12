@@ -1,4 +1,4 @@
-package org.incode.estcodasubscriber.spi.rest.config;
+package org.incode.ixnsubscriber.spi.rest.config;
 
 import lombok.Data;
 

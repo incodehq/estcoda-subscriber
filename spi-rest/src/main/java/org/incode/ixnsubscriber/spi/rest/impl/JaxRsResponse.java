@@ -1,8 +1,8 @@
-package org.incode.estcodasubscriber.spi.rest.impl;
+package org.incode.ixnsubscriber.spi.rest.impl;
 
 import javax.ws.rs.core.Response;
 
-import org.incode.estcodasubscriber.spi.RelayStatus;
+import org.incode.ixnsubscriber.spi.RelayStatus;
 
 public interface JaxRsResponse {
 

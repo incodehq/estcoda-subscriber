@@ -1,4 +1,4 @@
-package org.incode.estcodasubscriber.spi.rest.impl;
+package org.incode.ixnsubscriber.spi.rest.impl;
 
 import lombok.Setter;
 
@@ -12,11 +12,10 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriBuilder;
 
 import org.apache.isis.schema.ixn.v1.InteractionDto;
-import org.incode.estcodasubscriber.spi.Relay;
-import org.incode.estcodasubscriber.spi.RelayStatus;
-import org.incode.estcodasubscriber.spi.JaxbService;
-import org.incode.estcodasubscriber.spi.rest.config.RelayRestConfig;
-import org.springframework.beans.factory.annotation.Value;
+import org.incode.ixnsubscriber.spi.Relay;
+import org.incode.ixnsubscriber.spi.RelayStatus;
+import org.incode.ixnsubscriber.spi.JaxbService;
+import org.incode.ixnsubscriber.spi.rest.config.RelayRestConfig;
 import org.springframework.stereotype.Component;
 
 import com.google.common.collect.ImmutableMap;

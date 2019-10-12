@@ -1,13 +1,12 @@
-package org.incode.estcodasubscriber.spi.log.impl;
+package org.incode.ixnsubscriber.spi.log.impl;
 
 import lombok.Setter;
 
 import org.apache.isis.schema.ixn.v1.InteractionDto;
-import org.incode.estcodasubscriber.spi.JaxbService;
-import org.incode.estcodasubscriber.spi.Relay;
-import org.incode.estcodasubscriber.spi.RelayStatus;
-import org.incode.estcodasubscriber.spi.log.config.RelayLogConfig;
-import org.springframework.beans.factory.annotation.Value;
+import org.incode.ixnsubscriber.spi.JaxbService;
+import org.incode.ixnsubscriber.spi.Relay;
+import org.incode.ixnsubscriber.spi.RelayStatus;
+import org.incode.ixnsubscriber.spi.log.config.RelayLogConfig;
 import org.springframework.stereotype.Component;
 
 @Component

@@ -1,13 +1,9 @@
 package org.incode.estcodasubscriber.webapp;
 
-import org.incode.estcodasubscriber.spi.log.RelayLogModule;
-import org.incode.estcodasubscriber.spi.rest.RelayRestModule;
-import org.incode.estcodasubscriber.webapp.config.AppConfig;
-import org.incode.estcodasubscriber.webapp.dispatch.Dispatcher;
-import org.incode.estcodasubscriber.webapp.dispatch.SubscribingRoute;
+import org.incode.ixnsubscriber.spi.log.RelayLogModule;
+import org.incode.ixnsubscriber.spi.rest.RelayRestModule;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Import;
 
 @SpringBootApplication

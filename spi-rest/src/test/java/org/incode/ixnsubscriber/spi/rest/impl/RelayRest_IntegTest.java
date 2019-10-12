@@ -1,14 +1,13 @@
-package org.incode.estcodasubscriber.spi.rest.impl;
+package org.incode.ixnsubscriber.spi.rest.impl;
 
 import java.net.InetSocketAddress;
 import java.util.UUID;
 
 import org.apache.isis.schema.ixn.v1.ActionInvocationDto;
 import org.apache.isis.schema.ixn.v1.InteractionDto;
-import org.assertj.core.api.Assertions;
-import org.incode.estcodasubscriber.spi.JaxbService;
-import org.incode.estcodasubscriber.spi.RelayStatus;
-import org.incode.estcodasubscriber.spi.rest.RelayRestModule;
+import org.incode.ixnsubscriber.spi.JaxbService;
+import org.incode.ixnsubscriber.spi.RelayStatus;
+import org.incode.ixnsubscriber.spi.rest.RelayRestModule;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -16,7 +15,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockserver.integration.ClientAndServer;
 import org.mockserver.model.HttpRequest;
-import org.mockserver.model.HttpResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -1,9 +1,6 @@
 package org.incode.estcodasubscriber.webapp;
 
 
-import org.incode.estcodasubscriber.spi.RelayModule;
-import org.incode.estcodasubscriber.spi.rest.config.RelayRestConfig;
-import org.incode.estcodasubscriber.spi.rest.impl.RelayRest;
 import org.incode.estcodasubscriber.webapp.config.AppConfig;
 import org.incode.estcodasubscriber.webapp.dispatch.Dispatcher;
 import org.incode.estcodasubscriber.webapp.dispatch.SubscribingRoute;

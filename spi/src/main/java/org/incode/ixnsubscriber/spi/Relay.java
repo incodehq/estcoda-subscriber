@@ -1,4 +1,4 @@
-package org.incode.estcodasubscriber.spi;
+package org.incode.ixnsubscriber.spi;
 
 import org.apache.isis.schema.ixn.v1.InteractionDto;
 

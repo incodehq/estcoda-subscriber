@@ -1,4 +1,4 @@
-package org.incode.estcodasubscriber.spi;
+package org.incode.ixnsubscriber.spi;
 
 public enum RelayStatus {
     OK,

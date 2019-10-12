@@ -1,9 +1,9 @@
-package org.incode.estcodasubscriber.spi.log;
+package org.incode.ixnsubscriber.spi.log;
 
 
-import org.incode.estcodasubscriber.spi.RelayModule;
-import org.incode.estcodasubscriber.spi.log.config.RelayLogConfig;
-import org.incode.estcodasubscriber.spi.log.impl.RelayLog;
+import org.incode.ixnsubscriber.spi.RelayModule;
+import org.incode.ixnsubscriber.spi.log.config.RelayLogConfig;
+import org.incode.ixnsubscriber.spi.log.impl.RelayLog;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
