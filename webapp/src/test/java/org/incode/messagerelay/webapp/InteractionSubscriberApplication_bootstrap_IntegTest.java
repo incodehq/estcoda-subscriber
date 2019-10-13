@@ -1,6 +1,6 @@
 package org.incode.messagerelay.webapp;
 
-import org.incode.estcodasubscriber.webapp.InteractionSubscriberApplication;
+import org.incode.ixnsubscriber.webapp.InteractionSubscriberApplication;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;

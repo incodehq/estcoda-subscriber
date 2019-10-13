@@ -1,4 +1,4 @@
-package org.incode.estcodasubscriber.webapp.dispatch;
+package org.incode.ixnsubscriber.webapp.dispatch;
 
 
 import java.io.StringReader;

@@ -1,4 +1,4 @@
-package org.incode.estcodasubscriber.webapp.config;
+package org.incode.ixnsubscriber.webapp.config;
 
 import lombok.Data;
 

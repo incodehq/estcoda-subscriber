@@ -1,9 +1,9 @@
-package org.incode.estcodasubscriber.webapp;
+package org.incode.ixnsubscriber.webapp;
 
 
-import org.incode.estcodasubscriber.webapp.config.AppConfig;
-import org.incode.estcodasubscriber.webapp.dispatch.Dispatcher;
-import org.incode.estcodasubscriber.webapp.dispatch.SubscribingRoute;
+import org.incode.ixnsubscriber.webapp.config.AppConfig;
+import org.incode.ixnsubscriber.webapp.dispatch.Dispatcher;
+import org.incode.ixnsubscriber.webapp.dispatch.SubscribingRoute;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;

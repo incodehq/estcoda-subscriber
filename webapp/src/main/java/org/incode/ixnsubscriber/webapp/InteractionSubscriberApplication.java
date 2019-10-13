@@ -1,4 +1,4 @@
-package org.incode.estcodasubscriber.webapp;
+package org.incode.ixnsubscriber.webapp;
 
 import org.incode.ixnsubscriber.spi.log.RelayLogModule;
 import org.incode.ixnsubscriber.spi.rest.RelayRestModule;
