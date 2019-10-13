@@ -105,28 +105,3 @@ public class InteractionSubscriberApplication_dispatch_IntegTest {
     }
 }
 
-class AcknowledgingRelay implements Relay {
-
-    private CountDownLatch latch;
-
-    @Getter
-    private InteractionDto handleArg;
-
-    private RelayStatus handleReturn = RelayStatus.OK;
-
-    void toReturn(RelayStatus handleReturn) {
-        latch = new CountDownLatch(1);
-        this.handleReturn = handleReturn;
-    }
-
-    InteractionDto awaitMillis(int timeout) throws InterruptedException {
-        latch.await(timeout, TimeUnit.MILLISECONDS);
-        return handleArg;
-    }
-
-    @Override
-    public RelayStatus handle(InteractionDto interactionDto) {
-        this.handleArg = interactionDto;
-        return handleReturn;
-    }
-}
