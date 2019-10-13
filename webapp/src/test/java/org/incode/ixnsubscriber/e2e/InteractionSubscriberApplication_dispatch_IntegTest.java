@@ -32,7 +32,6 @@ public class InteractionSubscriberApplication_dispatch_IntegTest {
             RelayModule.class,
             WebappModule.class
     })
-    @EnableConfigurationProperties({AppConfig.class})
     static class E2EApplication {
     }
 
@@ -46,7 +45,7 @@ public class InteractionSubscriberApplication_dispatch_IntegTest {
     SubscribingRoute subscribingRoute;
 
     @Autowired
-    AcknowledgingRelay relay;
+    RelayStub relay;
 
     @Test
     public void happy_case() throws InterruptedException {

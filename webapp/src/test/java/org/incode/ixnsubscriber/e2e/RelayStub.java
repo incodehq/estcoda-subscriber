@@ -9,7 +9,7 @@ import org.apache.isis.schema.ixn.v1.InteractionDto;
 import org.incode.ixnsubscriber.spi.Relay;
 import org.incode.ixnsubscriber.spi.RelayStatus;
 
-class AcknowledgingRelay implements Relay {
+class RelayStub implements Relay {
 
     private CountDownLatch latch;
 
