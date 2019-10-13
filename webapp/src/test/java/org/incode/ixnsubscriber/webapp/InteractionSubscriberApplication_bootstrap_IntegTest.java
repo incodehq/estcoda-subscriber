@@ -1,4 +1,4 @@
-package org.incode.messagerelay.webapp;
+package org.incode.ixnsubscriber.webapp;
 
 import org.incode.ixnsubscriber.webapp.InteractionSubscriberApplication;
 import org.junit.Test;
