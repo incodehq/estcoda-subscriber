@@ -122,6 +122,11 @@
 				<version>${revision}</version>
 			</dependency>
 			<dependency>
+				<groupId>org.incode.ixn-subscriber</groupId>
+				<artifactId>ixn-subscriber-dispatcher</artifactId>
+				<version>${revision}</version>
+			</dependency>
+			<dependency>
 				<groupId>org.incode</groupId>
 				<artifactId>ixn-subscriber-webapp</artifactId>
 				<version>${revision}</version>
@@ -193,6 +198,7 @@
 	</dependencies>
 
 	<modules>
+		<module>dispatcher</module>
 		<module>spi</module>
 		<module>spi-log</module>
 		<module>spi-rest</module>

@@ -1,15 +1,13 @@
-package org.incode.ixnsubscriber.e2e;
+package org.incode.ixnsubscriber.dispatcher;
 
 import java.util.UUID;
 
 import org.apache.isis.schema.ixn.v1.ActionInvocationDto;
 import org.apache.isis.schema.ixn.v1.InteractionDto;
+import org.incode.ixnsubscriber.dispatcher.DispatcherModule;
 import org.incode.ixnsubscriber.spi.JaxbService;
 import org.incode.ixnsubscriber.spi.RelayModule;
 import org.incode.ixnsubscriber.spi.RelayStatus;
-import org.incode.ixnsubscriber.webapp.WebappModule;
-import org.incode.ixnsubscriber.webapp.config.AppConfig;
-import org.incode.ixnsubscriber.webapp.dispatch.SubscribingRoute;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -30,7 +28,7 @@ public class InteractionSubscriberApplication_dispatch_IntegTest {
     @SpringBootApplication
     @Import({
             RelayModule.class,
-            WebappModule.class
+            DispatcherModule.class
     })
     static class E2EApplication {
     }

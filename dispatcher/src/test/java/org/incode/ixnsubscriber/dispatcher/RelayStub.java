@@ -1,4 +1,4 @@
-package org.incode.ixnsubscriber.e2e;
+package org.incode.ixnsubscriber.dispatcher;
 
 import lombok.Getter;
 

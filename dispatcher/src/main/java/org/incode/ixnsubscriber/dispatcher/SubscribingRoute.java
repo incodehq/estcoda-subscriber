@@ -1,16 +1,16 @@
-package org.incode.ixnsubscriber.webapp.dispatch;
+package org.incode.ixnsubscriber.dispatcher;
 
 import org.apache.camel.builder.RouteBuilder;
-import org.incode.ixnsubscriber.webapp.config.AppConfig;
+import org.incode.ixnsubscriber.dispatcher.config.AppDispatcherConfig;
 import org.springframework.stereotype.Component;
 
 @Component
 public class SubscribingRoute extends RouteBuilder {
 
-    final AppConfig appConfig;
+    final AppDispatcherConfig appDispatcherConfig;
 
-    public SubscribingRoute(final AppConfig appConfig) {
-        this.appConfig = appConfig;
+    public SubscribingRoute(final AppDispatcherConfig appDispatcherConfig) {
+        this.appDispatcherConfig = appDispatcherConfig;
     }
 
     @Override

@@ -9,24 +9,17 @@
 		<version>${revision}</version>
 	</parent>
 
-    <artifactId>ixn-subscriber-webapp</artifactId>
-    <name>Interaction Subscriber Webapp</name>
-	<description>Webapp component of a subscriber for messages originating from an Apache Isis application via a Message Broker</description>
+    <artifactId>ixn-subscriber-dispatcher</artifactId>
+    <name>Interaction Subscriber Dispatcher</name>
+	<description>Subscriber and dispatcher component for messages originating from an Apache Isis application via a Message Broker</description>
 
-	<properties>
-
-		<docker-plugin.imageName>incodehq/ixn-subscriber</docker-plugin.imageName>
-		<docker-plugin.resource.include>${project.artifactId}-${project.version}.jar</docker-plugin.resource.include>
-		<docker-plugin.serverId>docker-hub</docker-plugin.serverId>
-		<docker-plugin.registryUrl>https://index.docker.io/v1/</docker-plugin.registryUrl>
-
-		<!-- seems to be required even though also defined in incode-build (via parent) -->
-		<mavenmixin-docker.version>0.0.4</mavenmixin-docker.version>
-		<docker-maven-plugin.version>1.0.0</docker-maven-plugin.version>
-
-	</properties>
 
 	<dependencies>
+
+		<dependency>
+			<groupId>org.incode.ixn-subscriber</groupId>
+			<artifactId>ixn-subscriber-spi</artifactId>
+		</dependency>
 
 		<!-- activemq -->
 		<dependency>
@@ -38,11 +31,6 @@
 					<artifactId>activemq-broker</artifactId>
 				</exclusion>
 			</exclusions>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
 
 		<!-- Camel -->
@@ -62,35 +50,8 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.apache.cxf</groupId>
-			<artifactId>cxf-rt-rs-client</artifactId>
-			<!--
-			seems to be necessary to specify this dependency directly,
-			(even though is transitive dependency of spi-rest).
-			Not doing results in resolving to incorrect version, then
-			unable to find the jax-rs provider)
-			-->
-			<version>${cxf.version}</version>
-		</dependency>
-
-		<dependency>
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.incode.ixn-subscriber</groupId>
-			<artifactId>ixn-subscriber-dispatcher</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.incode.ixn-subscriber</groupId>
-			<artifactId>ixn-subscriber-spi-log</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.incode.ixn-subscriber</groupId>
-			<artifactId>ixn-subscriber-spi-rest</artifactId>
 		</dependency>
 
 		<dependency>
@@ -208,18 +169,6 @@
 					</mixins>
 				</configuration>
 			</plugin>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>${spring-boot.version}</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>repackage</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
 
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>

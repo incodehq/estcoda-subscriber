@@ -1,5 +1,6 @@
 package org.incode.ixnsubscriber.webapp;
 
+import org.incode.ixnsubscriber.dispatcher.DispatcherModule;
 import org.incode.ixnsubscriber.spi.log.RelayLogModule;
 import org.incode.ixnsubscriber.spi.rest.RelayRestModule;
 import org.springframework.boot.SpringApplication;
@@ -10,9 +11,9 @@ import org.springframework.context.annotation.Import;
 @Import({
         RelayRestModule.class,
         RelayLogModule.class,
+        DispatcherModule.class,
         WebappModule.class
 })
-//@EnableConfigurationProperties({AppConfig.class})
 public class InteractionSubscriberApplication {
 
     public static void main(String[] args) {

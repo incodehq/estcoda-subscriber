@@ -1,4 +1,4 @@
-package org.incode.ixnsubscriber.webapp.dispatch;
+package org.incode.ixnsubscriber.dispatcher;
 
 
 import java.io.StringReader;
@@ -7,9 +7,9 @@ import java.util.Optional;
 
 import org.apache.camel.Consume;
 import org.apache.isis.schema.ixn.v1.InteractionDto;
+import org.incode.ixnsubscriber.spi.JaxbService;
 import org.incode.ixnsubscriber.spi.Relay;
 import org.incode.ixnsubscriber.spi.RelayStatus;
-import org.incode.ixnsubscriber.spi.JaxbService;
 import org.springframework.stereotype.Component;
 
 @Component

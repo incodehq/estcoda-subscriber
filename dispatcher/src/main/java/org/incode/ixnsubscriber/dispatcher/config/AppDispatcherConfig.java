@@ -1,4 +1,4 @@
-package org.incode.ixnsubscriber.webapp.config;
+package org.incode.ixnsubscriber.dispatcher.config;
 
 import lombok.Data;
 
@@ -8,9 +8,11 @@ import java.time.temporal.ChronoUnit;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.convert.DurationUnit;
 
-@ConfigurationProperties("app")
+@ConfigurationProperties("app.dispatcher")
 @Data
-public class AppConfig {
+public class AppDispatcherConfig {
+
+    private String queueName = "memberInteractionsQueue";
 
 
 }
