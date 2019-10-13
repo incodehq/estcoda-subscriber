@@ -1,15 +1,10 @@
-package org.incode.messagerelay.webapp;
-
-import lombok.Getter;
+package org.incode.ixnsubscriber.e2e;
 
 import java.util.UUID;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.TimeUnit;
 
 import org.apache.isis.schema.ixn.v1.ActionInvocationDto;
 import org.apache.isis.schema.ixn.v1.InteractionDto;
 import org.incode.ixnsubscriber.spi.JaxbService;
-import org.incode.ixnsubscriber.spi.Relay;
 import org.incode.ixnsubscriber.spi.RelayModule;
 import org.incode.ixnsubscriber.spi.RelayStatus;
 import org.incode.ixnsubscriber.webapp.WebappModule;

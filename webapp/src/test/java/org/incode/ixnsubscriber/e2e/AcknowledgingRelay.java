@@ -1,4 +1,4 @@
-package org.incode.messagerelay.webapp;
+package org.incode.ixnsubscriber.e2e;
 
 import lombok.Getter;
 

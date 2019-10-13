@@ -1,4 +1,4 @@
-package org.incode.messagerelay.webapp;
+package org.incode.ixnsubscriber.e2e;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -11,7 +11,7 @@ import org.springframework.jms.core.JmsTemplate;
  * sets up {@link JmsTemplate} to use local broker (picked up from src/test/resources/application.yaml)
  */
 @Configuration
-class SenderConfig {
+class JmsTemplateConfig {
 
     @Value("${activemq.broker-url}")
     private String brokerUrl;
@@ -36,9 +36,5 @@ class SenderConfig {
         return new JmsTemplate(cachingConnectionFactory());
     }
 
-    @Bean
-    public AcknowledgingRelay acknowledgingRelay() {
-        return new AcknowledgingRelay();
-    }
 
 }
