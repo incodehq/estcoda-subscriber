@@ -29,8 +29,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = EstatioCodaSubscriberApplication_dispatch_IntegTest.E2EApplication.class)
-public class EstatioCodaSubscriberApplication_dispatch_IntegTest {
+@SpringBootTest(classes = InteractionSubscriberApplication_dispatch_IntegTest.E2EApplication.class)
+public class InteractionSubscriberApplication_dispatch_IntegTest {
 
     @SpringBootApplication
     @Import({

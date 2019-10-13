@@ -13,10 +13,10 @@ import org.springframework.context.annotation.Import;
         WebappModule.class
 })
 //@EnableConfigurationProperties({AppConfig.class})
-public class EstatioCodaSubscriberApplication {
+public class InteractionSubscriberApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(EstatioCodaSubscriberApplication.class, args);
+        SpringApplication.run(InteractionSubscriberApplication.class, args);
     }
 
 }
