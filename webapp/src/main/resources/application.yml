@@ -18,4 +18,11 @@ app:
     uri-suffix: memberInteractionsQueue
     connection-timeout: 60s
     receive-timeout: 60s
+  tracing:
+    tracing-type: zipkin
+    zipkin:
+      endpoint: http://localhost:9411/api/v2/spans
+      service-name: ixn-subscriber
+      rate: 1.0f
+      include-message-body-streams: true
 

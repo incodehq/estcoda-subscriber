@@ -101,34 +101,51 @@ app:
     uri-suffix: memberInteractionsQueue
     connection-timeout: 60s
     receive-timeout: 60s
+
+  tracing:
+    tracing-type: zipkin
+    zipkin:
+      endpoint: http://localhost:9411/api/v2/spans
+      service-name: ixn-subscriber
+      rate: 1.0f
+      include-message-body-streams: true
 ----
+
+
 
 == Local Testing
 
-=== Prereqs
+=== Prereqs : Message Broker
 
-This image requires an instance of Apache ActiveMQ to be running:
+This image requires an instance of Apache ActiveMQ to be running.
+The easiest way to do this is using the link:https://cloud.docker.com/u/incodehq/repository/docker/incodehq/activemq-mssqlserver/tags[incodehq/activemq-mssqlserver] Docker image.
+Note, this will default to using an in-memory database, so it has no hard pre-reqs itself.
 
-* link:https://activemq.apache.org/components/classic/download/[download] the broker as a .zip or .tar.gz file.
-* Unzip/tar the archive, and start a terminal.
-* change directory to the unzipped directory and start the broker.
-+
+For example:
+
 [source,bash]
 ----
-bin/activemq start
+export TAG=20191011.1912.master.880118bc
+
+docker run -d -p61616:61616 -p8161:8161 incodehq/activemq-mssqlserver:$TAG
 ----
-+
-This runs the broker using the configuration in the `conf` directory.
-The user/password is defined in `conf/user.properties` (ie, `admin`/`admin`).
 
-* Log on using: link:http://localhost:8161[]
+Then, log on using: link:http://localhost:8161[]
 
-* To control the ActiveMQ broker, use `status`, `help`, `start` and `stop`, eg;
-+
+=== Prereqs : Zipkin
+
+This dependency is optional, and can be disabled by setting the app.tracing.tracing-type configuration property to 'none'.
+
+Otherwise, an instance of zipkin needs to be running at the specified URL specified by the `app.tracing.zipkin.endpoint` configuration property.
+
+The easiest way to satisfy this is to run the `openzipkin/zipkin` image.
+This runs in-memory by default:
+
 [source,bash]
 ----
-bin/activemq status
+docker run -d -p 9411:9411 openzipkin/zipkin
 ----
+
 
 === How to run the example
 
@@ -142,7 +159,6 @@ mvn -pl webapp spring-boot:run
 ----
 
 
-
 == Docker
 
 A Docker image of this app is available at https://hub.docker.com/r/incodehq/ixn-subscriber[Docker hub].
@@ -151,4 +167,5 @@ To allow configuration to be easily externalized, the image expects a `/run/secr
 Spring Boot will then link:https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-external-config.html#boot-features-external-config-application-property-files[automatically pick up] that configuration and use it.
 
 Typically therefore all that is required is to define an `application.yaml` or `application.properties` file as a secret.
+If the secret filename has a prefix, as may be the case for Docker swarm namespacing, (eg `foo.bar.application.yaml`) then a symbolic link (eg `application.yaml`) will be automatically created to the secret filename.
 
