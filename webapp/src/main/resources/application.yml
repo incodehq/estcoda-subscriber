@@ -10,7 +10,8 @@ spring:
     broker-url: tcp://localhost:61616
 
 app:
-  queue-name: memberInteractionsQueue
+  dispatcher:
+    queue-name: memberInteractionsQueue
   relay-rest:
     base: http://localhost:9090/estcoda/
     username: alex
@@ -26,3 +27,12 @@ app:
       rate: 1.0f
       include-message-body-streams: true
 
+management:
+  endpoint:
+    jolokia:
+      enabled: true
+
+  endpoints:
+    web:
+      exposure:
+        include: "*"
