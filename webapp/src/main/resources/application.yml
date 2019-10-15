@@ -11,7 +11,8 @@ spring:
 
 app:
   dispatcher:
-    queue-name: memberInteractionsQueue
+    queue-name:
+      memberInteractionsQueue
   relay-rest:
     base: http://localhost:9090/estcoda/
     username: alex
