@@ -30,16 +30,10 @@ public class RelayRest implements Relay {
     String base;
 
     @Setter
-    Integer portOverride;
-
-    @Setter
     String username;
 
     @Setter
     String password;
-
-    @Setter
-    String uriPrefix;
 
     @Setter
     String uriSuffix;
@@ -52,7 +46,6 @@ public class RelayRest implements Relay {
 
     @Setter
     boolean logOnly;
-
 
     URI uri;
 
@@ -116,14 +109,6 @@ public class RelayRest implements Relay {
         return invocationBuilder.header("Authorization", "Basic " + encode(username, password));
     }
 
-
-    private static MediaType mediaTypeFor(final Class<?> dtoClass, final String reprType) {
-        return new MediaType("application", "xml",
-                ImmutableMap.of(
-                        "profile", "urn:org.restfulobjects:repr-types/"
-                                + reprType,
-                        "x-ro-domain-type", dtoClass.getName()));
-    }
 
     private static String encode(final String username, final String password) {
         return org.apache.cxf.common.util.Base64Utility.encode(asBytes(username, password));
