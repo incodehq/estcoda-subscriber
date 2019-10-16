@@ -39,7 +39,12 @@ public class RelayCxfrs implements Relay {
     boolean logOnly;
 
     URI uri;
-    private ProducerTemplate producerTemplate;
+
+// can't get this working... instead, manually create and configure.
+//    @Produce(uri = "cxfrs:{{app.relay-cxfrs.base}}{{app.relay-cxfrs.uri-suffix}}")
+//    ProducerTemplate producerTemplate;
+
+    ProducerTemplate producerTemplate;
 
     public RelayCxfrs(JaxbService jaxbService, CamelContext camelContext, RelayCxfrsConfig config) {
 
@@ -53,7 +58,7 @@ public class RelayCxfrs implements Relay {
     }
 
     @PostConstruct
-    public void init() {
+    public void init() throws Exception {
         this.uri = UriBuilder.fromUri(this.base + this.uriSuffix).build();
 
         this.producerTemplate = camelContext.createProducerTemplate();
@@ -70,5 +75,4 @@ public class RelayCxfrs implements Relay {
             return RelayStatus.FAILED;
         }
     }
-
 }

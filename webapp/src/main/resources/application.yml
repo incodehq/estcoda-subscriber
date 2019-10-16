@@ -13,13 +13,9 @@ app:
   dispatcher:
     queue-name:
       memberInteractionsQueue
-  relay-rest:
-    base: http://localhost:9090/estcoda/
-    username: alex
-    password: pass
+  relay-cxfrs:
+    base: http://localhost:9090/est2coda/
     uri-suffix: memberInteractionsQueue
-    connection-timeout: 60s
-    receive-timeout: 60s
   tracing:
     tracing-type: zipkin
     zipkin:

@@ -94,11 +94,14 @@ spring:
 
 app:
   queue-name: memberInteractionsQueue
+  relay-cxfrs:
+    base: http://localhost:9090/est2coda/
+    uri-suffix: memberInteractionsQueue
   relay-rest:
-    base: http://localhost:9090/estcoda/
+    base: http://localhost:9090/est2coda/
+    uri-suffix: memberInteractionsQueue
     username: alex
     password: pass
-    uri-suffix: memberInteractionsQueue
     connection-timeout: 60s
     receive-timeout: 60s
 
