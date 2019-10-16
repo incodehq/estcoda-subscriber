@@ -15,7 +15,7 @@ public class SubscribingRoute extends RouteBuilder {
 
     @Override
     public void configure() {
-        from("activemq:{{app.queue-name}}")
+        from("activemq:{{app.dispatcher.queue-name}}")
             .to("direct:receive");
     }
 

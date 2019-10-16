@@ -1,10 +1,6 @@
 activemq:
   broker-url: vm://embedded-broker?broker.persistent=false
 
-spring:
-  activemq:
-    broker-url: vm://embedded-broker?broker.persistent=false
-
 app:
-  relay-rest:
-    log-only: true
+  dispatcher:
+    queue-name: memberInteractionsQueue
