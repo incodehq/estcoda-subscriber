@@ -108,21 +108,6 @@
 		<dependencies>
 			<dependency>
 				<groupId>org.incode.ixn-subscriber</groupId>
-				<artifactId>ixn-subscriber-spi</artifactId>
-				<version>${revision}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.incode.ixn-subscriber</groupId>
-				<artifactId>ixn-subscriber-spi-log</artifactId>
-				<version>${revision}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.incode.ixn-subscriber</groupId>
-				<artifactId>ixn-subscriber-spi-cxfrs</artifactId>
-				<version>${revision}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.incode.ixn-subscriber</groupId>
 				<artifactId>ixn-subscriber-dispatcher</artifactId>
 				<version>${revision}</version>
 			</dependency>
@@ -199,9 +184,6 @@
 
 	<modules>
 		<module>dispatcher</module>
-		<module>spi</module>
-		<module>spi-log</module>
-		<module>spi-cxfrs</module>
 		<module>webapp</module>
 	</modules>
 

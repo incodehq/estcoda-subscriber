@@ -2,5 +2,24 @@ activemq:
   broker-url: vm://embedded-broker?broker.persistent=false
 
 app:
-  dispatcher:
+  subscriber:
     queue-name: memberInteractionsQueue
+
+  cxfrs:
+    scheme: http
+    host: localhost
+
+    # this doesn't work, because it generates a different value each time called.
+    # that results in the mockserver getting one value, and the cxf client getting another !!!
+    #
+    #port: ${random.int[10000,63000]}
+
+    # therefore the port value unfortunately has to be hardcoded.
+    port: 4000
+
+    context-path: est2coda
+    uri-suffix: memberInteractionsQueue
+
+camel:
+  springboot:
+    tracing: true

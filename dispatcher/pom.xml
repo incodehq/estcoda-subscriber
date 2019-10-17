@@ -13,12 +13,15 @@
     <name>Interaction Subscriber Dispatcher</name>
 	<description>Subscriber and dispatcher component for messages originating from an Apache Isis application via a Message Broker</description>
 
+	<properties>
+		<mockserver.version>3.10.8</mockserver.version>
+	</properties>
 
 	<dependencies>
 
 		<dependency>
-			<groupId>org.incode.ixn-subscriber</groupId>
-			<artifactId>ixn-subscriber-spi</artifactId>
+			<groupId>org.apache.isis.core</groupId>
+			<artifactId>isis-core-schema</artifactId>
 		</dependency>
 
 		<!-- activemq -->
@@ -48,6 +51,34 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+
+		<dependency>
+			<groupId>org.apache.camel</groupId>
+			<artifactId>camel-cxf-starter</artifactId>
+		</dependency>
+
+		<!-- not 100% certain these cxf dependencies are required over and above camel-cxf-starter -->
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-rs-client</artifactId>
+			<!--
+            for some reason, seems to be necessary to explicitly specify the version
+            (even though the version in dependencyManagement is the same.
+            Not doing so results in unable to find the jax-rs provider)
+            -->
+			<version>${cxf.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-transports-http-hc</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-frontend-jaxrs</artifactId>
+		</dependency>
+
 
 		<dependency>
 			<groupId>com.google.guava</groupId>
@@ -94,6 +125,19 @@
 		<dependency>
 			<groupId>org.apache.activemq</groupId>
 			<artifactId>activemq-broker</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.mock-server</groupId>
+			<artifactId>mockserver-netty</artifactId>
+			<version>${mockserver.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.mock-server</groupId>
+			<artifactId>mockserver-client-java</artifactId>
+			<version>${mockserver.version}</version>
 			<scope>test</scope>
 		</dependency>
 

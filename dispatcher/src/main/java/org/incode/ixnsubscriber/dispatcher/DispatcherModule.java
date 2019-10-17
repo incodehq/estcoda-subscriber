@@ -1,7 +1,8 @@
 package org.incode.ixnsubscriber.dispatcher;
 
 
-import org.incode.ixnsubscriber.dispatcher.config.AppDispatcherConfig;
+import org.incode.ixnsubscriber.dispatcher.config.AppSubscriberConfig;
+import org.incode.ixnsubscriber.dispatcher.config.AppCxfrsConfig;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
@@ -9,10 +10,9 @@ import org.springframework.context.annotation.Import;
 
 @Configuration
 @Import({
-        Dispatcher.class,
-        SubscribingRoute.class
+        DispatcherRoute.class
 })
-@EnableConfigurationProperties(AppDispatcherConfig.class)
+@EnableConfigurationProperties({AppSubscriberConfig.class, AppCxfrsConfig.class})
 public class DispatcherModule {
 
 }

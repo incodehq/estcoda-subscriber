@@ -236,14 +236,6 @@
 			<groupId>org.incode.ixn-subscriber</groupId>
 			<artifactId>ixn-subscriber-dispatcher</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>org.incode.ixn-subscriber</groupId>
-			<artifactId>ixn-subscriber-spi-log</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.incode.ixn-subscriber</groupId>
-			<artifactId>ixn-subscriber-spi-cxfrs</artifactId>
-		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

@@ -1,4 +1,4 @@
-package org.incode.ixnsubscriber.spi.log.config;
+package org.incode.ixnsubscriber.dispatcher.config;
 
 import lombok.Data;
 
@@ -8,10 +8,10 @@ import java.time.temporal.ChronoUnit;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.convert.DurationUnit;
 
-@ConfigurationProperties("app.relay-log")
+@ConfigurationProperties("app.subscriber")
 @Data
-public class RelayLogConfig {
+public class AppSubscriberConfig {
 
-    private String logPrefix = ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n";
+    private String queueName = "memberInteractionsQueue";
 
 }

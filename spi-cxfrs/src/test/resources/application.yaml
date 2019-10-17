@@ -1,4 +1,0 @@
-app:
-  relay-cxfrs:
-    base: http://localhost:9090/est2coda/
-    uri-suffix: memberInteractionsQueue

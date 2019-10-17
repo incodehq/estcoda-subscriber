@@ -2,35 +2,59 @@ package org.incode.ixnsubscriber.dispatcher;
 
 import java.util.UUID;
 
+import javax.annotation.PostConstruct;
+
+import org.apache.camel.CamelContext;
 import org.apache.isis.schema.ixn.v1.ActionInvocationDto;
 import org.apache.isis.schema.ixn.v1.InteractionDto;
-import org.incode.ixnsubscriber.dispatcher.DispatcherModule;
-import org.incode.ixnsubscriber.spi.JaxbService;
-import org.incode.ixnsubscriber.spi.RelayModule;
-import org.incode.ixnsubscriber.spi.RelayStatus;
-import org.junit.Ignore;
+import org.incode.ixnsubscriber.dispatcher.config.AppCxfrsConfig;
+import org.incode.ixnsubscriber.dispatcher.util.JaxbService;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockserver.integration.ClientAndServer;
+import org.mockserver.model.HttpRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockserver.integration.ClientAndServer.startClientAndServer;
+import static org.mockserver.model.HttpRequest.request;
+import static org.mockserver.model.HttpResponse.response;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = InteractionSubscriberApplication_dispatch_IntegTest.E2EApplication.class)
+@SpringBootTest(classes = InteractionSubscriberApplication_dispatch_IntegTest.DispatcherRouteTestApp.class)
 public class InteractionSubscriberApplication_dispatch_IntegTest {
 
     @SpringBootApplication
     @Import({
-            RelayModule.class,
             DispatcherModule.class
     })
-    static class E2EApplication {
+    static class DispatcherRouteTestApp {
+    }
+
+    @Autowired
+    CamelContext camelContext;
+
+    @Autowired
+    AppCxfrsConfig appCxfrsConfig;
+
+    ClientAndServer mockServer;
+
+    @Before
+    public void startServer() {
+        final int port = appCxfrsConfig.getPort();
+        mockServer = startClientAndServer(port);
+    }
+
+    @After
+    public void stopServer() {
+         mockServer.stop();
     }
 
     @Autowired
@@ -40,10 +64,7 @@ public class InteractionSubscriberApplication_dispatch_IntegTest {
     JmsTemplate jmsTemplate;
 
     @Autowired
-    SubscribingRoute subscribingRoute;
-
-    @Autowired
-    RelayStub relay;
+    DispatcherRoute subscribingRoute;
 
     @Test
     public void happy_case() throws InterruptedException {
@@ -53,35 +74,19 @@ public class InteractionSubscriberApplication_dispatch_IntegTest {
         String xml = jaxbService.toXml(interactionDto);
 
         // expect
-        relay.toReturn(RelayStatus.OK);
+        final HttpRequest expectedRequest = request().withPath("/est2coda/memberInteractionsQueue")
+                .withMethod("POST")
+//                .withBody(xml)
+                ;
+        mockServer.when(expectedRequest).respond(response().withStatusCode(200));
 
         // when
-        jmsTemplate.convertAndSend("memberInteractionsQueue", xml);
+         jmsTemplate.convertAndSend("memberInteractionsQueue", xml);
+
+        Thread.sleep(1000);
 
         // then
-        final InteractionDto returned = relay.awaitMillis(1000);
-        final String returnedXml = jaxbService.toXml(returned);
-
-        assertThat(returnedXml).isEqualTo(xml);
-    }
-
-    @Ignore // this works, but it's not clear to me where we should handle an exception, or how this will work exactly in "real-life"
-    @Test
-    public void sad_case() throws InterruptedException {
-
-        // given
-        InteractionDto interactionDto = newInteractionDto();
-        String xml = jaxbService.toXml(interactionDto);
-
-        // expect
-        relay.toReturn(RelayStatus.FAILED);
-
-        // when
-        jmsTemplate.convertAndSend("memberInteractionsQueue", xml);
-
-        // then
-        relay.awaitMillis(1000);
-
+         mockServer.verify(expectedRequest);
     }
 
     private static InteractionDto newInteractionDto() {
@@ -95,5 +100,6 @@ public class InteractionSubscriberApplication_dispatch_IntegTest {
         interactionDto.setExecution(actionInvocationDto);
         return interactionDto;
     }
+
 }
 

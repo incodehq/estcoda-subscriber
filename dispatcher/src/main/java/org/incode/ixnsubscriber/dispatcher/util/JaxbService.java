@@ -1,4 +1,4 @@
-package org.incode.ixnsubscriber.spi;
+package org.incode.ixnsubscriber.dispatcher.util;
 
 import java.io.*;
 import java.net.URL;

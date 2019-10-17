@@ -10,11 +10,14 @@ spring:
     broker-url: tcp://localhost:61616
 
 app:
-  dispatcher:
+  subscriber:
     queue-name:
       memberInteractionsQueue
-  relay-cxfrs:
-    base: http://localhost:9090/est2coda/
+  cxfrs:
+    scheme: http
+    host: localhost
+    port: 9090
+    context-path: est2coda
     uri-suffix: memberInteractionsQueue
   tracing:
     tracing-type: zipkin
