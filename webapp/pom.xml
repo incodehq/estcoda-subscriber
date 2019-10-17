@@ -228,18 +228,6 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.apache.cxf</groupId>
-			<artifactId>cxf-rt-rs-client</artifactId>
-			<!--
-			seems to be necessary to specify this dependency directly,
-			(even though is transitive dependency of spi-rest).
-			Not doing results in resolving to incorrect version, then
-			unable to find the jax-rs provider)
-			-->
-			<version>${cxf.version}</version>
-		</dependency>
-
-		<dependency>
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
 		</dependency>
@@ -248,15 +236,13 @@
 			<groupId>org.incode.ixn-subscriber</groupId>
 			<artifactId>ixn-subscriber-dispatcher</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>org.incode.ixn-subscriber</groupId>
 			<artifactId>ixn-subscriber-spi-log</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>org.incode.ixn-subscriber</groupId>
-			<artifactId>ixn-subscriber-spi-rest</artifactId>
+			<artifactId>ixn-subscriber-spi-cxfrs</artifactId>
 		</dependency>
 
 		<dependency>
@@ -302,7 +288,7 @@
 			<scope>test</scope>
 		</dependency>
 
-	</dependencies>
+    </dependencies>
 
 
 </project>
