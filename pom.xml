@@ -35,6 +35,7 @@
 		<cxf.version>3.2.10</cxf.version>
 
 		<lombok.version>1.18.10</lombok.version>
+		<approvaltests.version>2.0.0</approvaltests.version>
 
 		<compileSource>8</compileSource>
 		<compileTarget>8</compileTarget>
@@ -169,6 +170,12 @@
 				<scope>provided</scope>
 			</dependency>
 
+			<dependency>
+				<groupId>com.approvaltests</groupId>
+				<artifactId>approvaltests</artifactId>
+				<version>${approvaltests.version}</version>
+				<scope>test</scope>
+			</dependency>
 
 		</dependencies>
 

@@ -280,7 +280,53 @@
 			<scope>test</scope>
 		</dependency>
 
-    </dependencies>
+		<dependency>
+			<groupId>com.approvaltests</groupId>
+			<artifactId>approvaltests</artifactId>
+			<scope>test</scope>
+		</dependency>
 
+	</dependencies>
+
+	<profiles>
+		<profile>
+			<id>lockdown</id>
+			<activation>
+				<property>
+					<name>lockdown</name>
+				</property>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<artifactId>maven-dependency-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>list</id>
+								<phase>generate-test-resources</phase>
+								<goals>
+									<goal>list</goal>
+								</goals>
+								<configuration>
+									<outputFile>${project.build.directory}/test-classes/org/incode/ixnsubscriber/webapp/lockdown/LockDownMavenDeps_Test.list.actual.txt</outputFile>
+								</configuration>
+							</execution>
+							<execution>
+								<id>tree</id>
+								<phase>generate-test-resources</phase>
+								<goals>
+									<goal>tree</goal>
+								</goals>
+								<configuration>
+									<outputFile>${project.build.directory}/test-classes/org/incode/ixnsubscriber/webapp/lockdown/LockDownMavenDeps_Test.tree.actual.txt</outputFile>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+
+	</profiles>
 
 </project>
