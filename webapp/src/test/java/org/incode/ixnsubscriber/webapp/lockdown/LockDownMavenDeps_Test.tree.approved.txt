@@ -1,5 +1,5 @@
 org.incode.ixn-subscriber:ixn-subscriber-webapp:jar:1.0.0-SNAPSHOT
-+- org.apache.camel:camel-zipkin-starter:jar:2.24.2:compile
++- org.springframework.boot:spring-boot-starter-activemq:jar:2.1.8.RELEASE:compile
 |  +- org.springframework.boot:spring-boot-starter:jar:2.1.8.RELEASE:compile
 |  |  +- org.springframework.boot:spring-boot:jar:2.1.8.RELEASE:compile
 |  |  +- org.springframework.boot:spring-boot-autoconfigure:jar:2.1.8.RELEASE:compile
@@ -11,17 +11,6 @@ org.incode.ixn-subscriber:ixn-subscriber-webapp:jar:1.0.0-SNAPSHOT
 |  |  |  \- org.slf4j:jul-to-slf4j:jar:1.7.28:compile
 |  |  +- javax.annotation:javax.annotation-api:jar:1.3.2:compile
 |  |  \- org.yaml:snakeyaml:jar:1.23:runtime
-|  +- org.apache.camel:camel-zipkin:jar:2.24.2:compile
-|  |  +- org.apache.camel:camel-core:jar:2.24.2:compile
-|  |  +- io.zipkin.reporter2:zipkin-sender-libthrift:jar:2.7.13:compile
-|  |  |  +- io.zipkin.reporter2:zipkin-reporter:jar:2.7.13:compile
-|  |  |  +- org.apache.thrift:libthrift:jar:0.11.0:compile
-|  |  |  \- io.zipkin.zipkin2:zipkin:jar:2.11.10:compile
-|  |  +- io.zipkin.reporter2:zipkin-sender-urlconnection:jar:2.7.13:compile
-|  |  +- io.zipkin.brave:brave:jar:5.6.0:compile
-|  |  \- io.zipkin.brave:brave-context-slf4j:jar:5.6.0:compile
-|  \- org.apache.camel:camel-core-starter:jar:2.24.2:compile
-+- org.springframework.boot:spring-boot-starter-activemq:jar:2.1.8.RELEASE:compile
 |  +- org.springframework:spring-jms:jar:5.1.9.RELEASE:compile
 |  |  +- org.springframework:spring-beans:jar:5.1.9.RELEASE:compile
 |  |  +- org.springframework:spring-messaging:jar:5.1.9.RELEASE:compile
@@ -36,7 +25,9 @@ org.incode.ixn-subscriber:ixn-subscriber-webapp:jar:1.0.0-SNAPSHOT
 |     +- org.hdrhistogram:HdrHistogram:jar:2.1.9:compile
 |     \- org.latencyutils:LatencyUtils:jar:2.0.3:compile
 +- org.apache.camel:camel-spring-boot-starter:jar:2.24.2:compile
-|  \- org.apache.camel:camel-spring-boot:jar:2.24.2:compile
+|  +- org.apache.camel:camel-spring-boot:jar:2.24.2:compile
+|  \- org.apache.camel:camel-core-starter:jar:2.24.2:compile
+|     \- org.apache.camel:camel-core:jar:2.24.2:compile
 +- org.apache.activemq:activemq-camel:jar:5.15.10:compile
 |  +- org.slf4j:slf4j-api:jar:1.7.28:compile
 |  +- org.apache.camel:camel-jms:jar:2.24.2:compile

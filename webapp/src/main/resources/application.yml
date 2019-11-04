@@ -20,12 +20,7 @@ app:
     context-path: est2coda
     uri-suffix: memberInteractionsQueue
   tracing:
-    tracing-type: zipkin
-    zipkin:
-      endpoint: http://localhost:9411/api/v2/spans
-      service-name: ixn-subscriber
-      rate: 1.0f
-      include-message-body-streams: true
+    tracing-type: none
 
 management:
   endpoint:

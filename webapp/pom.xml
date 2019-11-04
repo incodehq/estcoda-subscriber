@@ -178,11 +178,6 @@
 
 	<dependencies>
 
-		<dependency>
-			<groupId>org.apache.camel</groupId>
-			<artifactId>camel-zipkin-starter</artifactId>
-		</dependency>
-
 
 		<!-- activemq -->
 		<dependency>
