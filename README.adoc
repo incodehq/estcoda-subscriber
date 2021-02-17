@@ -1,7 +1,9 @@
+CAUTION: this project has been archived; the current version resides in a (private) gitlab repo.
+
 = Interaction Subscriber
 :toc:
 
-CAUTION: this project has been archived; the current version resides in a (private) gitlab repo.
+
 
 This microservice is responsible for subscribing to an ActiveMQ message broker and forwarding on any link:https://isis.apache.org/schema/ixn/ixn.xsd[interaction] messages (originally originating from an link:https://isis.apache.org[Apache Isis]) application onto a REST endpoint.
 
