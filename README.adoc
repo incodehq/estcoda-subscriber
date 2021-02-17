@@ -1,6 +1,8 @@
 = Interaction Subscriber
 :toc:
 
+CAUTION: this project has been archived; the current version resides in a (private) gitlab repo.
+
 This microservice is responsible for subscribing to an ActiveMQ message broker and forwarding on any link:https://isis.apache.org/schema/ixn/ixn.xsd[interaction] messages (originally originating from an link:https://isis.apache.org[Apache Isis]) application onto a REST endpoint.
 
 It can be used in conjunction with the link:https://github.com/incodehq/ixn-relay[incodehq/ixn-relay] to publish messages from an Apache Isis application to an integration webapp (eg implemented using https://camel.apache.org[Apache Camel]), but without either the Apache Isis app nor the integration app having knowledge of the other.
